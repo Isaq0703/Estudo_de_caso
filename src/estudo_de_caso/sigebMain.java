@@ -48,6 +48,11 @@ public class sigebMain {
 						op = 4;
 						break;
 					}
+					default:{
+						System.out.println("Digite novamente;");
+						op = 1;
+						break;
+					}
 					}
 					break;
 				}
@@ -55,6 +60,25 @@ public class sigebMain {
 					//editar
 					System.out.println("Editar Turma;");
 					System.out.println("");
+					System.out.println("1 Voltar ao Menu");
+					System.out.println("2 Encerrar Programa");
+					System.out.println("");
+					opT2 = Integer.valueOf(leitura.nextLine());
+					switch (opT2) {
+					case 1:{
+						op = 0;
+						break;
+					}
+					case 2:{
+						System.out.println("Encerrando...");
+						op = 4;
+						break;
+					}
+					default:{
+						System.out.println("Digite novamente;");
+						break;
+					}
+					}
 					break;
 				}
 				case 3:{
@@ -80,7 +104,20 @@ public class sigebMain {
 				//alunos
 				System.out.println("Alunos;");
 				System.out.println("");
+				System.out.println("1 Adicionar Aluno");
+				System.out.println("2 Excluir Aluno");
+				System.out.println("");
+				opT= Integer.valueOf(leitura.nextLine());
+				switch (opT) {
+				case 1:{
+					System.out.println("Adicionar Aluno;");
+					break;
+				}
+				case 2:{
+					System.out.println("Excluir Aluno;");
+				}
 				break;
+			}
 			}
 			case 3:{
 				//notas
