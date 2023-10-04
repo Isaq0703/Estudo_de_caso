@@ -34,6 +34,7 @@ public class sigebMain {
 					//criar
 					System.out.println("Criar Turma;");
 					System.out.println("");
+					
 					System.out.println("1 Voltar ao Menu");
 					System.out.println("2 Encerrar Programa");
 					System.out.println("");
@@ -85,12 +86,39 @@ public class sigebMain {
 					//listar
 					System.out.println("Ver Turmas;");
 					System.out.println("");
+					System.out.println("1 Voltar ao menu");
+					System.out.println("2 Encerrar programa");
+					System.out.println("");
+					opT2 = Integer.valueOf(leitura.nextLine());
+					switch (opT2) {
+					case 1:{
+						op = 0;
+						break;
+					}
+					case 2:{
+						System.out.println("Encerrando...");
+						op = 4;
+						break;
+					}
+					}
 					break;
 				}
 				case 4:{
 					//excluir
 					System.out.println("Excluir turma;");
 					System.out.println("");
+					System.out.println("1 Voltar ao menu");
+					System.out.println("2 Encerrar programa");
+					opT2 = Integer.valueOf(leitura.nextLine());
+					switch(opT2) {
+					case 1:{
+						op =0;
+					}
+					case 2:{
+						System.out.println("Encerrando...");
+						op = 4;
+					}
+					}
 					break;
 				}
 				default :{
