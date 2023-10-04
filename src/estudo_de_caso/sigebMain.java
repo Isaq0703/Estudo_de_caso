@@ -1,8 +1,12 @@
 package estudo_de_caso;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class sigebMain {
+	
+	private static ArrayList<Aluno> listaAlunos = new ArrayList<>();
+	private static ArrayList<Turma> listaTurmas = new ArrayList<>();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -34,7 +38,12 @@ public class sigebMain {
 					// criar
 					System.out.println("Criar Turma;");
 					System.out.println("");
-
+					System.out.println("Digite o nome da turma a ser criada:");
+					String nome = leitura.nextLine();
+					Turma turma1 = new Turma ();
+					turma1.setNome(nome);
+					listaTurmas.add(turma1);
+					System.out.println(turma1.getNome());
 					System.out.println("1 Voltar ao Menu");
 					System.out.println("2 Encerrar Programa");
 					System.out.println("");
@@ -86,6 +95,9 @@ public class sigebMain {
 					// listar
 					System.out.println("Ver Turmas;");
 					System.out.println("");
+					for (String string : args) {
+						
+					}
 					System.out.println("1 Voltar ao menu");
 					System.out.println("2 Encerrar programa");
 					System.out.println("");
