@@ -14,8 +14,11 @@ public class sigebMain {
 		Integer op = 0;
 		Integer opT = 0;
 		Integer opT2 = 0;
+		Integer i = 0;
+		Integer turmae = 0;
+		Integer turmax = 0;
 		while (op != 4) {
-			System.out.println("***SIGEB***");
+			System.out.println("***SIGEB***\n");
 			System.out.println("1 Turmas");
 			System.out.println("2 Alunos");
 			System.out.println("3 Notas");
@@ -24,9 +27,8 @@ public class sigebMain {
 			op = Integer.valueOf(leitura.nextLine());
 			switch (op) {
 			case 1: {
-				// turmas
-				System.out.println("Turmas;");
-				System.out.println("");
+				// TURMAS
+				System.out.println("Turmas\n");
 				System.out.println("1 Criar Turma");
 				System.out.println("2 Editar Turma");
 				System.out.println("3 Ver Turmas");
@@ -35,15 +37,16 @@ public class sigebMain {
 				opT = Integer.valueOf(leitura.nextLine());
 				switch (opT) {
 				case 1: {
-					// criar
-					System.out.println("Criar Turma;");
+					// CRIAR
+					i=0;
+					System.out.println("Criar Turma\n");
 					System.out.println("");
 					System.out.println("Digite o nome da turma a ser criada:");
 					String nome = leitura.nextLine();
 					Turma turma1 = new Turma ();
 					turma1.setNome(nome);
 					listaTurmas.add(turma1);
-					System.out.println(turma1.getNome());
+					System.out.println("Turma '"+turma1.getNome()+"' criada com sucesso");
 					System.out.println("1 Voltar ao Menu");
 					System.out.println("2 Encerrar Programa");
 					System.out.println("");
@@ -67,9 +70,22 @@ public class sigebMain {
 					break;
 				}
 				case 2: {
-					// editar
+					i=0;
+					// EDITAR
 					System.out.println("Editar Turma;");
 					System.out.println("");
+					System.out.println("Digite o número da turma a ser editada:");
+					for (Turma listaT : listaTurmas) {
+						i = i+1;
+						System.out.println(i+"-"+listaT.getNome());
+					}
+					turmae = Integer.valueOf(leitura.nextLine());
+					System.out.println("Digite o novo nome da turma:");
+					Turma turmaE = new Turma ();
+					turmaE.setNome(leitura.nextLine());
+					listaTurmas.set((turmae-1), turmaE);
+					System.out.println("nome alterado com sucesso");
+					System.out.println(" ");
 					System.out.println("1 Voltar ao Menu");
 					System.out.println("2 Encerrar Programa");
 					System.out.println("");
@@ -92,11 +108,11 @@ public class sigebMain {
 					break;
 				}
 				case 3: {
-					// listar
-					System.out.println("Ver Turmas;");
-					System.out.println("");
-					for (String string : args) {
-						
+					i=0;
+					// LISTAR
+					System.out.println("Ver Turmas\n");
+					for (Turma listaT : listaTurmas) {
+						System.out.println(listaT.getNome());
 					}
 					System.out.println("1 Voltar ao menu");
 					System.out.println("2 Encerrar programa");
@@ -116,19 +132,36 @@ public class sigebMain {
 					break;
 				}
 				case 4: {
-					// excluir
-					System.out.println("Excluir turma;");
+					// EXCLUIR
+					i=0;
+					System.out.println("Excluir turma\n");
 					System.out.println("");
+					System.out.println("Digite o número da turma a ser excluída:");
+					for (Turma listaT : listaTurmas) {
+						i = i+1;
+						System.out.println(i+"-"+listaT.getNome());
+					}
+					turmax = Integer.valueOf(leitura.nextLine());
+					listaTurmas.remove((turmax-1));
+					System.out.println("turma excluída com sucesso");
 					System.out.println("1 Voltar ao menu");
 					System.out.println("2 Encerrar programa");
+					System.out.println("3 Excluir outra turma");
 					opT2 = Integer.valueOf(leitura.nextLine());
 					switch (opT2) {
 					case 1: {
 						op = 0;
+						break;
 					}
 					case 2: {
 						System.out.println("Encerrando...");
 						op = 4;
+						break;
+					}
+					case 3:{
+						op=0;
+						opT = 4;
+						break;
 					}
 					}
 					break;
