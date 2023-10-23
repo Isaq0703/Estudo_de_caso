@@ -45,6 +45,7 @@ public class sigebMain {
 					String nome = leitura.nextLine();
 					Turma turma1 = new Turma();
 					turma1.setNome(nome);
+					System.out.println("Digite o código da turma:");
 					turma1.setCodTurma(leitura.nextLine());
 
 					listaTurmas.add(turma1);
@@ -204,7 +205,27 @@ public class sigebMain {
 							listaT.setAlunos(listaAlunos);
 						}
 					}
-
+					System.out.println("Aluno adicionado com sucesso\n");
+					System.out.println("1 Voltar ao Menu");
+					System.out.println("2 Encerrar Programa");
+					System.out.println("");
+					opT2 = Integer.valueOf(leitura.nextLine());
+					switch (opT2) {
+					case 1: {
+						op = 0;
+						break;
+					}
+					case 2: {
+						System.out.println("Encerrando...");
+						op = 4;
+						break;
+					}
+					default: {
+						System.out.println("Digite novamente;");
+						op = 1;
+						break;
+					}
+					}
 					break;
 				}
 				case 2: {
@@ -217,19 +238,47 @@ public class sigebMain {
 					for (Aluno aluno : listaAlunos) {
 						System.out.println(aluno.getNome());
 					}
-
-					break;
-				}
-				case 4: {
-					// ENCERRAR
-					System.out.println("Encerrando...");
-					break;
-				}
-				default: {
-					System.out.println("Digite novamente;");
+					System.out.println("\n");
+					System.out.println("1 Voltar ao Menu");
+					System.out.println("2 Encerrar Programa");
 					System.out.println("");
+					opT2 = Integer.valueOf(leitura.nextLine());
+					switch (opT2) {
+					case 1: {
+						op = 0;
+						break;
+					}
+					case 2: {
+						System.out.println("Encerrando...");
+						op = 4;
+						break;
+					}
+					default: {
+						System.out.println("Digite novamente;");
+						op = 1;
+						break;
+					}
+					}
+					break;
 				}
 				}
+			}
+			case 3: {
+				// NOTAS
+				System.out.println("Notas");
+				System.out.println("1 Registrar Notas");
+				System.out.println("2 Editar Notas");
+				System.out.println("3 Listar Notas");
+				System.out.println("4 Excluir Notas");
+			}
+			case 4: {
+				// ENCERRAR
+				System.out.println("Encerrando...");
+				break;
+			}
+			default: {
+				System.out.println("Digite novamente;");
+				System.out.println("");
 			}
 			}
 		}
