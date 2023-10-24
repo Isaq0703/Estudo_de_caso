@@ -201,6 +201,8 @@ public class sigebMain {
 							System.out.println("Digite o nome do aluno que será adicionado:");
 							Aluno alunoA = new Aluno();
 							alunoA.setNome(leitura.nextLine());
+							System.out.println("Digite o cóigo do aluno que será adicionado:");
+							alunoA.setCodigoMatricula(leitura.nextLine());
 							listaAlunos.add(alunoA);
 							listaT.setAlunos(listaAlunos);
 						}
@@ -230,6 +232,7 @@ public class sigebMain {
 				}
 				case 2: {
 					System.out.println("Editar Aluno\n");
+					
 					break;
 				}
 				case 3: {
@@ -261,7 +264,36 @@ public class sigebMain {
 					}
 					break;
 				}
+				case 4: {
+					// EXCLUIR
+					System.out.println("Excluir alunos\n");
+					for (Turma listaT : listaTurmas) {
+						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
+					}
+					System.out.println("Digite o código da turma onde o aluno está cadastrado:");
+					String turmaA = leitura.nextLine();
+					System.out.println("\n");
+					for (Turma listaT : listaTurmas) {
+						if (listaT.getCodTurma().equals(turmaA)) {
+							for (Aluno aluno : listaT.getAlunos()) {
+								System.out.println(aluno.getCodigoMatricula() + "-" + aluno.getNome());
+							}
+							System.out.println("Digite o código do aluno que deseja excluir:");
+							String codMatricula = leitura.nextLine();
+
+							for (Aluno aluno : listaT.getAlunos()) {
+								if (aluno.getCodigoMatricula().equals(codMatricula)) {
+									listaT.getAlunos().remove(aluno);
+									System.out.println("Aluno removido com sucesso");
+									return;
+								}
+							}
+						}
+					}
 				}
+					break;
+				}
+				break;
 			}
 			case 3: {
 				// NOTAS
@@ -270,6 +302,29 @@ public class sigebMain {
 				System.out.println("2 Editar Notas");
 				System.out.println("3 Listar Notas");
 				System.out.println("4 Excluir Notas");
+				opT = Integer.valueOf(leitura.nextLine());
+				switch (opT) {
+				case 1:
+					for (Turma listaT : listaTurmas) {
+						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
+					}
+					System.out.println("Digite o código da turma em que você deseja regitrar uma nota");
+					String turmaA = leitura.nextLine();
+					System.out.println("Digite o número do aluno que terá a nota registrada:\n");
+
+					break;
+				case 2:
+
+					break;
+
+				case 3:
+
+					break;
+				case 4:
+
+					break;
+				}
+				break;
 			}
 			case 4: {
 				// ENCERRAR
