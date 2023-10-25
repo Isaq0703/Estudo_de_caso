@@ -15,9 +15,8 @@ public class sigebMain {
 		Integer opT = 0;
 		Integer opT2 = 0;
 		Integer i = 0;
-		Integer turmae = 0;
 		Integer turmax = 0;
-		while (op != 4) {
+		while (op != 3) {
 			System.out.println("***SIGEB***\n");
 			System.out.println("1 Turmas");
 			System.out.println("2 Alunos");
@@ -61,7 +60,7 @@ public class sigebMain {
 					}
 					case 2: {
 						System.out.println("Encerrando...");
-						op = 4;
+						op = 3;
 						break;
 					}
 					default: {
@@ -77,17 +76,19 @@ public class sigebMain {
 					// EDITAR
 					System.out.println("Editar Turma;");
 					System.out.println("");
-					System.out.println("Digite o número da turma a ser editada:");
+					System.out.println("Digite o código da turma a ser editada:");
 					for (Turma listaT : listaTurmas) {
 						i = i + 1;
-						System.out.println(i + "-" + listaT.getNome());
+						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
 					}
-					turmae = Integer.valueOf(leitura.nextLine());
+					String turmae = leitura.nextLine();
 					System.out.println("Digite o novo nome da turma:");
-					Turma turmaE = new Turma();
-					turmaE.setCodTurma(leitura.nextLine());
-					turmaE.setNome(leitura.nextLine());
-					listaTurmas.set((turmae - 1), turmaE);
+					String novoNome = (leitura.nextLine());
+					for (Turma listaT : listaTurmas) {
+						if(turmae.equals(listaT.getCodTurma())) {
+							listaT.setNome(novoNome);
+						}
+					}
 					System.out.println("nome alterado com sucesso");
 					System.out.println(" ");
 					System.out.println("1 Voltar ao Menu");
@@ -101,7 +102,7 @@ public class sigebMain {
 					}
 					case 2: {
 						System.out.println("Encerrando...");
-						op = 4;
+						op = 3;
 						break;
 					}
 					default: {
@@ -129,7 +130,7 @@ public class sigebMain {
 					}
 					case 2: {
 						System.out.println("Encerrando...");
-						op = 4;
+						op = 3;
 						break;
 					}
 					}
@@ -159,7 +160,7 @@ public class sigebMain {
 					}
 					case 2: {
 						System.out.println("Encerrando...");
-						op = 4;
+						op = 3;
 						break;
 					}
 					case 3: {
@@ -201,7 +202,7 @@ public class sigebMain {
 							System.out.println("Digite o nome do aluno que será adicionado:");
 							Aluno alunoA = new Aluno();
 							alunoA.setNome(leitura.nextLine());
-							System.out.println("Digite o cóigo do aluno que será adicionado:");
+							System.out.println("Digite o código do aluno que será adicionado:");
 							alunoA.setCodigoMatricula(leitura.nextLine());
 							listaAlunos.add(alunoA);
 							listaT.setAlunos(listaAlunos);
@@ -219,7 +220,7 @@ public class sigebMain {
 					}
 					case 2: {
 						System.out.println("Encerrando...");
-						op = 4;
+						op = 3;
 						break;
 					}
 					default: {
@@ -231,11 +232,6 @@ public class sigebMain {
 					break;
 				}
 				case 2: {
-					System.out.println("Editar Aluno\n");
-					
-					break;
-				}
-				case 3: {
 					// LISTAR
 					System.out.println("Listar alunos\n");
 					for (Aluno aluno : listaAlunos) {
@@ -253,7 +249,7 @@ public class sigebMain {
 					}
 					case 2: {
 						System.out.println("Encerrando...");
-						op = 4;
+						op = 3;
 						break;
 					}
 					default: {
@@ -264,7 +260,7 @@ public class sigebMain {
 					}
 					break;
 				}
-				case 4: {
+				case 3: {
 					// EXCLUIR
 					System.out.println("Excluir alunos\n");
 					for (Turma listaT : listaTurmas) {
@@ -288,45 +284,29 @@ public class sigebMain {
 									return;
 								}
 							}
+							System.out.println("1 Voltar ao Menu");
+							System.out.println("2 Encerrar Programa");
+							System.out.println("");
+							opT2 = Integer.valueOf(leitura.nextLine());
+							switch (opT2) {
+							case 1: {
+								op = 0;
+								break;
+							}
+							case 2: {
+								System.out.println("Encerrando...");
+								op = 3;
+								break;
+							}
+							default: {
+								System.out.println("Digite novamente;");
+								op = 1;
+								break;
+							}
 						}
-					}
-				}
 					break;
-				}
 				break;
-			}
 			case 3: {
-				// NOTAS
-				System.out.println("Notas");
-				System.out.println("1 Registrar Notas");
-				System.out.println("2 Editar Notas");
-				System.out.println("3 Listar Notas");
-				System.out.println("4 Excluir Notas");
-				opT = Integer.valueOf(leitura.nextLine());
-				switch (opT) {
-				case 1:
-					for (Turma listaT : listaTurmas) {
-						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
-					}
-					System.out.println("Digite o código da turma em que você deseja regitrar uma nota");
-					String turmaA = leitura.nextLine();
-					System.out.println("Digite o número do aluno que terá a nota registrada:\n");
-
-					break;
-				case 2:
-
-					break;
-
-				case 3:
-
-					break;
-				case 4:
-
-					break;
-				}
-				break;
-			}
-			case 4: {
 				// ENCERRAR
 				System.out.println("Encerrando...");
 				break;
