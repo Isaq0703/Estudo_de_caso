@@ -20,9 +20,9 @@ public class sigebMain {
 			System.out.println("***SIGEB***\n");
 			System.out.println("1 Turmas");
 			System.out.println("2 Alunos");
-			System.out.println("3 Notas");
-			System.out.println("4 Encerrar");
+			System.out.println("3 Encerrar");
 			System.out.println("");
+			System.out.println("Digite o número da opção selecionada:");
 			op = Integer.valueOf(leitura.nextLine());
 			switch (op) {
 			case 1: {
@@ -48,7 +48,7 @@ public class sigebMain {
 					turma1.setCodTurma(leitura.nextLine());
 
 					listaTurmas.add(turma1);
-					System.out.println("Turma '" + turma1.getNome() + "' criada com sucesso");
+					System.out.println("\nTurma '" + turma1.getNome() + "' criada com sucesso\n");
 					System.out.println("1 Voltar ao Menu");
 					System.out.println("2 Encerrar Programa");
 					System.out.println("");
@@ -82,14 +82,14 @@ public class sigebMain {
 						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
 					}
 					String turmae = leitura.nextLine();
-					System.out.println("Digite o novo nome da turma:");
+					System.out.println("\nDigite o novo nome da turma:");
 					String novoNome = (leitura.nextLine());
 					for (Turma listaT : listaTurmas) {
-						if(turmae.equals(listaT.getCodTurma())) {
+						if (turmae.equals(listaT.getCodTurma())) {
 							listaT.setNome(novoNome);
 						}
 					}
-					System.out.println("nome alterado com sucesso");
+					System.out.println("\nnome alterado com sucesso");
 					System.out.println(" ");
 					System.out.println("1 Voltar ao Menu");
 					System.out.println("2 Encerrar Programa");
@@ -148,10 +148,9 @@ public class sigebMain {
 					}
 					turmax = Integer.valueOf(leitura.nextLine());
 					listaTurmas.remove((turmax - 1));
-					System.out.println("turma excluída com sucesso");
+					System.out.println("\nturma excluída com sucesso\n");
 					System.out.println("1 Voltar ao menu");
 					System.out.println("2 Encerrar programa");
-					System.out.println("3 Excluir outra turma");
 					opT2 = Integer.valueOf(leitura.nextLine());
 					switch (opT2) {
 					case 1: {
@@ -172,7 +171,7 @@ public class sigebMain {
 					break;
 				}
 				default: {
-					System.out.println("Digite Novamente;");
+					System.out.println("Digite Novamente;\n");
 					System.out.println("");
 				}
 				}
@@ -182,9 +181,8 @@ public class sigebMain {
 				// ALUNOS
 				System.out.println("Alunos\n");
 				System.out.println("1 Adicionar Aluno");
-				System.out.println("2 Editar Aluno");
-				System.out.println("3 Listar Alunos");
-				System.out.println("4 Excluir Aluno\n");
+				System.out.println("2 Listar Alunos");
+				System.out.println("3 Excluir Aluno\n");
 				opT = Integer.valueOf(leitura.nextLine());
 				switch (opT) {
 				case 1: {
@@ -281,39 +279,42 @@ public class sigebMain {
 								if (aluno.getCodigoMatricula().equals(codMatricula)) {
 									listaT.getAlunos().remove(aluno);
 									System.out.println("Aluno removido com sucesso");
-									return;
 								}
 							}
-							System.out.println("1 Voltar ao Menu");
-							System.out.println("2 Encerrar Programa");
-							System.out.println("");
-							opT2 = Integer.valueOf(leitura.nextLine());
-							switch (opT2) {
-							case 1: {
-								op = 0;
-								break;
-							}
-							case 2: {
-								System.out.println("Encerrando...");
-								op = 3;
-								break;
-							}
-							default: {
-								System.out.println("Digite novamente;");
-								op = 1;
-								break;
-							}
 						}
+					}
+					System.out.println("1 Voltar ao Menu");
+					System.out.println("2 Encerrar Programa");
+					System.out.println("");
+					opT2 = Integer.valueOf(leitura.nextLine());
+					switch (opT2) {
+					case 1: {
+						op = 0;
+						break;
+					}
+					case 2: {
+						System.out.println("Encerrando...");
+						op = 3;
+						break;
+					}
+					default: {
+						System.out.println("Digite novamente;");
+						op = 1;
+						break;
+					}
+					}
 					break;
-				break;
-			case 3: {
-				// ENCERRAR
-				System.out.println("Encerrando...");
-				break;
-			}
-			default: {
-				System.out.println("Digite novamente;");
-				System.out.println("");
+				}
+				case 4: {
+					// ENCERRAR
+					System.out.println("Encerrando...");
+					break;
+				}
+				default: {
+					System.out.println("Digite novamente;");
+					System.out.println("");
+				}
+				}
 			}
 			}
 		}
