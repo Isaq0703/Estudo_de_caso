@@ -1,7 +1,12 @@
-package estudo_de_caso;
+package visao;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
+import modelo.Aluno;
+import modelo.Turma;
 
 public class sigebMain {
 
@@ -42,12 +47,14 @@ public class sigebMain {
 					System.out.println("");
 					System.out.println("Digite o nome da turma a ser criada:");
 					String nome = leitura.nextLine();
+
 					Turma turma1 = new Turma();
 					turma1.setNome(nome);
 					System.out.println("Digite o código da turma:");
 					turma1.setCodTurma(leitura.nextLine());
 
 					listaTurmas.add(turma1);
+
 					System.out.println("\nTurma '" + turma1.getNome() + "' criada com sucesso\n");
 					System.out.println("1 Voltar ao Menu");
 					System.out.println("2 Encerrar Programa");
@@ -298,6 +305,7 @@ public class sigebMain {
 						break;
 					}
 					default: {
+
 						System.out.println("Digite novamente;");
 						op = 1;
 						break;

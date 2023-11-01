@@ -1,4 +1,4 @@
-package estudo_de_caso;
+package modelo;
 
 import java.util.ArrayList;
 
