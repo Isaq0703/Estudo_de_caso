@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import controle.TurmasDAO;
 import modelo.Aluno;
 import modelo.Turma;
 
@@ -53,7 +54,8 @@ public class sigebMain {
 					System.out.println("Digite o código da turma:");
 					turma1.setCodTurma(leitura.nextLine());
 
-					listaTurmas.add(turma1);
+					TurmasDAO dao = new TurmasDAO();
+					dao.inserir(turma1);
 
 					System.out.println("\nTurma '" + turma1.getNome() + "' criada com sucesso\n");
 					System.out.println("1 Voltar ao Menu");
