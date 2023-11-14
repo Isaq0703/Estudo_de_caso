@@ -3,16 +3,13 @@ package visao;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.JOptionPane;
-
-import controle.TurmasDAO;
+import controle.TurmaDAO;
 import modelo.Aluno;
 import modelo.Turma;
 
 public class sigebMain {
 
-	private static ArrayList<Aluno> listaAlunos = new ArrayList<>();
-	private static ArrayList<Turma> listaTurmas = new ArrayList<>();
+	private static TurmaDAO daoTurma = TurmaDAO.getInstancia();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -48,13 +45,12 @@ public class sigebMain {
 					System.out.println("");
 					System.out.println("Digite o nome da turma a ser criada:");
 					String nome = leitura.nextLine();
-
+					System.out.println("Digite o código da turma:");
+					Integer codigo = Integer.valueOf(leitura.nextLine());
 					Turma turma1 = new Turma();
 					turma1.setNome(nome);
-					System.out.println("Digite o código da turma:");
-					turma1.setCodTurma(leitura.nextLine());
-
-					TurmasDAO dao = new TurmasDAO();
+					turma1.setCodTurma(codigo);
+					TurmaDAO dao = new TurmaDAO();
 					dao.inserir(turma1);
 
 					System.out.println("\nTurma '" + turma1.getNome() + "' criada com sucesso\n");
@@ -86,6 +82,9 @@ public class sigebMain {
 					System.out.println("Editar Turma;");
 					System.out.println("");
 					System.out.println("Digite o código da turma a ser editada:");
+
+					ArrayList<Turma> listaTurmas = daoTurma.listarTurma();
+
 					for (Turma listaT : listaTurmas) {
 						i = i + 1;
 						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
@@ -93,6 +92,11 @@ public class sigebMain {
 					String turmae = leitura.nextLine();
 					System.out.println("\nDigite o novo nome da turma:");
 					String novoNome = (leitura.nextLine());
+					TurmaDAO dao1 = new TurmaDAO();
+					Turma nome1 = new Turma();
+					nome1.setNome(novoNome);
+					dao1.alterar(nome1); // obj da turma ja com os novos valores
+
 					for (Turma listaT : listaTurmas) {
 						if (turmae.equals(listaT.getCodTurma())) {
 							listaT.setNome(novoNome);
@@ -125,6 +129,7 @@ public class sigebMain {
 					i = 0;
 					// LISTAR
 					System.out.println("Ver Turmas\n");
+					ArrayList<Turma> listaTurmas = daoTurma.listarTurma();
 					for (Turma listaT : listaTurmas) {
 						System.out.println(listaT.getNome());
 					}
@@ -151,12 +156,15 @@ public class sigebMain {
 					System.out.println("Excluir turma\n");
 					System.out.println("");
 					System.out.println("Digite o número da turma a ser excluída:");
+					ArrayList<Turma> listaTurmas = daoTurma.listarTurma();
 					for (Turma listaT : listaTurmas) {
 						i = i + 1;
 						System.out.println(i + "-" + listaT.getNome());
 					}
 					turmax = Integer.valueOf(leitura.nextLine());
-					listaTurmas.remove((turmax - 1));
+					Turma remo = new Turma();
+					remo.setCodTurma(turmax - 1);
+					daoTurma.excluir(remo);
 					System.out.println("\nturma excluída com sucesso\n");
 					System.out.println("1 Voltar ao menu");
 					System.out.println("2 Encerrar programa");
@@ -198,6 +206,7 @@ public class sigebMain {
 					// ADICIONAR
 					System.out.println("Adicionar Aluno\n");
 
+					ArrayList<Turma> listaTurmas = daoTurma.listarTurma();
 					for (Turma listaT : listaTurmas) {
 						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
 					}
@@ -211,8 +220,8 @@ public class sigebMain {
 							alunoA.setNome(leitura.nextLine());
 							System.out.println("Digite o código do aluno que será adicionado:");
 							alunoA.setCodigoMatricula(leitura.nextLine());
-							listaAlunos.add(alunoA);
-							listaT.setAlunos(listaAlunos);
+
+							listaT.getAlunos().add(alunoA);
 						}
 					}
 					System.out.println("Aluno adicionado com sucesso\n");
@@ -241,8 +250,11 @@ public class sigebMain {
 				case 2: {
 					// LISTAR
 					System.out.println("Listar alunos\n");
-					for (Aluno aluno : listaAlunos) {
-						System.out.println(aluno.getNome());
+					ArrayList<Turma> listaTurmas = daoTurma.listarTurma();
+					for (Turma turma : listaTurmas) {
+						for (Aluno aluno : turma.getAlunos()) {
+							System.out.println(aluno.getNome());
+						}
 					}
 					System.out.println("\n");
 					System.out.println("1 Voltar ao Menu");
@@ -270,6 +282,8 @@ public class sigebMain {
 				case 3: {
 					// EXCLUIR
 					System.out.println("Excluir alunos\n");
+
+					ArrayList<Turma> listaTurmas = daoTurma.listarTurma();
 					for (Turma listaT : listaTurmas) {
 						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
 					}

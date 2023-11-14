@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class Turma {
 
-	private String codTurma;
+	private Integer codTurma;
 	private ArrayList<Aluno> alunos = new ArrayList<>();
 	private String nome;
 
-	public String getCodTurma() {
+	public Integer getCodTurma() {
 		return codTurma;
 	}
 
-	public void setCodTurma(String codTurma) {
+	public void setCodTurma(Integer codTurma) {
 		this.codTurma = codTurma;
 	}
 
