@@ -11,6 +11,7 @@ public class sigebMain {
 
 	private static TurmaDAO daoTurma = TurmaDAO.getInstancia();
 
+	@SuppressWarnings("unlikely-arg-type")
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner leitura = new Scanner(System.in);
@@ -211,7 +212,7 @@ public class sigebMain {
 						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
 					}
 					System.out.println("Digite o código da turma em que você deseja adicionar um aluno:");
-					String turmaA = leitura.nextLine();
+					Integer turmaA = Integer.valueOf(leitura.nextLine());
 
 					for (Turma listaT : listaTurmas) {
 						if (listaT.getCodTurma().equals(turmaA)) {
@@ -220,8 +221,10 @@ public class sigebMain {
 							alunoA.setNome(leitura.nextLine());
 							System.out.println("Digite o código do aluno que será adicionado:");
 							alunoA.setCodigoMatricula(leitura.nextLine());
-
-							listaT.getAlunos().add(alunoA);
+							Aluno dao = new Aluno();
+							dao.inserir(alunoA);
+							listaT.getAlunos().add(dao);
+							
 						}
 					}
 					System.out.println("Aluno adicionado com sucesso\n");
@@ -300,7 +303,8 @@ public class sigebMain {
 
 							for (Aluno aluno : listaT.getAlunos()) {
 								if (aluno.getCodigoMatricula().equals(codMatricula)) {
-									listaT.getAlunos().remove(aluno);
+									Aluno remo = new Aluno();
+									remo.excluir(aluno);
 									System.out.println("Aluno removido com sucesso");
 								}
 							}
