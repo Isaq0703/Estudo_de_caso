@@ -35,14 +35,4 @@ public class Aluno {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	public boolean inserir(Aluno a) {
-		boolean inseriu = tabelaalunos.add(a);
-		return inseriu;
-	}
-	
-	public boolean excluir(Aluno a){
-		boolean excluido = tabelaalunos.remove(a);
-		return excluido;
-	}
 }

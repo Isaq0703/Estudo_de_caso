@@ -84,7 +84,7 @@ public class sigebMain {
 					System.out.println("");
 					System.out.println("Digite o código da turma a ser editada:");
 
-					ArrayList<Turma> listaTurmas = daoTurma.listarTurma();
+					ArrayList<Turma> listaTurmas = daoTurma.listarTurmas();
 
 					for (Turma listaT : listaTurmas) {
 						i = i + 1;
@@ -130,7 +130,7 @@ public class sigebMain {
 					i = 0;
 					// LISTAR
 					System.out.println("Ver Turmas\n");
-					ArrayList<Turma> listaTurmas = daoTurma.listarTurma();
+					ArrayList<Turma> listaTurmas = daoTurma.listarTurmas();
 					for (Turma listaT : listaTurmas) {
 						System.out.println(listaT.getNome());
 					}
@@ -157,7 +157,7 @@ public class sigebMain {
 					System.out.println("Excluir turma\n");
 					System.out.println("");
 					System.out.println("Digite o número da turma a ser excluída:");
-					ArrayList<Turma> listaTurmas = daoTurma.listarTurma();
+					ArrayList<Turma> listaTurmas = daoTurma.listarTurmas();
 					for (Turma listaT : listaTurmas) {
 						i = i + 1;
 						System.out.println(i + "-" + listaT.getNome());
@@ -207,24 +207,25 @@ public class sigebMain {
 					// ADICIONAR
 					System.out.println("Adicionar Aluno\n");
 
-					ArrayList<Turma> listaTurmas = daoTurma.listarTurma();
+					ArrayList<Turma> listaTurmas = daoTurma.listarTurmas();
 					for (Turma listaT : listaTurmas) {
 						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
 					}
 					System.out.println("Digite o código da turma em que você deseja adicionar um aluno:");
 					Integer turmaA = Integer.valueOf(leitura.nextLine());
 
-					for (Turma listaT : listaTurmas) {
-						if (listaT.getCodTurma().equals(turmaA)) {
+					for (Turma turma : listaTurmas) {
+						if (turma.getCodTurma().equals(turmaA)) {
 							System.out.println("Digite o nome do aluno que será adicionado:");
-							Aluno alunoA = new Aluno();
-							alunoA.setNome(leitura.nextLine());
+							Aluno aluno = new Aluno();
+							aluno.setNome(leitura.nextLine());
 							System.out.println("Digite o código do aluno que será adicionado:");
-							alunoA.setCodigoMatricula(leitura.nextLine());
-							Aluno dao = new Aluno();
-							dao.inserir(alunoA);
-							listaT.getAlunos().add(dao);
-							
+							aluno.setCodigoMatricula(leitura.nextLine());
+							TurmaDAO dao = new TurmaDAO();
+							dao.inseriraluno(aluno);
+							// DAO (inseriraluno)
+							turma.getAlunos().add(aluno);
+
 						}
 					}
 					System.out.println("Aluno adicionado com sucesso\n");
@@ -253,7 +254,7 @@ public class sigebMain {
 				case 2: {
 					// LISTAR
 					System.out.println("Listar alunos\n");
-					ArrayList<Turma> listaTurmas = daoTurma.listarTurma();
+					ArrayList<Turma> listaTurmas = daoTurma.listarTurmas();
 					for (Turma turma : listaTurmas) {
 						for (Aluno aluno : turma.getAlunos()) {
 							System.out.println(aluno.getNome());
@@ -286,28 +287,28 @@ public class sigebMain {
 					// EXCLUIR
 					System.out.println("Excluir alunos\n");
 
-					ArrayList<Turma> listaTurmas = daoTurma.listarTurma();
-					for (Turma listaT : listaTurmas) {
+					for (Turma listaT : daoTurma.listarTurmas()) {
 						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
 					}
 					System.out.println("Digite o código da turma onde o aluno está cadastrado:");
 					String turmaA = leitura.nextLine();
 					System.out.println("\n");
-					for (Turma listaT : listaTurmas) {
-						if (listaT.getCodTurma().equals(turmaA)) {
-							for (Aluno aluno : listaT.getAlunos()) {
+					for (Turma turma : daoTurma.listarTurmas()) {
+						if (turma.getCodTurma().equals(turmaA)) {
+							for (Aluno aluno : turma.getAlunos()) {
 								System.out.println(aluno.getCodigoMatricula() + "-" + aluno.getNome());
 							}
 							System.out.println("Digite o código do aluno que deseja excluir:");
 							String codMatricula = leitura.nextLine();
 
-							for (Aluno aluno : listaT.getAlunos()) {
+							// DAO (excluirAluno)
+							for (Aluno aluno : turma.getAlunos()) {
 								if (aluno.getCodigoMatricula().equals(codMatricula)) {
-									Aluno remo = new Aluno();
-									remo.excluir(aluno);
-									System.out.println("Aluno removido com sucesso");
+									turma.getAlunos().remove(aluno);
 								}
 							}
+
+							System.out.println("Aluno removido com sucesso");
 						}
 					}
 					System.out.println("1 Voltar ao Menu");

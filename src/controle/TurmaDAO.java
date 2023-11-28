@@ -2,6 +2,7 @@ package controle;
 
 import java.util.ArrayList;
 
+import modelo.Aluno;
 import modelo.Turma;
 
 public class TurmaDAO implements ITurmasDAO {
@@ -31,14 +32,21 @@ public class TurmaDAO implements ITurmasDAO {
 	@Override
 	public boolean excluir(Turma t) {
 		boolean excluido = tabelaturmas.remove(t);
-		
+
 		return excluido;
 	}
 
 	@Override
-	public ArrayList<Turma> listarTurma() {
+	public ArrayList<Turma> listarTurmas() {
 		return tabelaturmas;
 	}
-
-
+	
+	public boolean inseriraluno(Turma t){
+		boolean inseria = tabelaturmas.add(t);
+		return inseria;
+	}
+	public boolean excluiraluno(Aluno t) {
+		boolean excluia = tabelaturmas.remove(t);
+		return excluia;
+	} 
 }
