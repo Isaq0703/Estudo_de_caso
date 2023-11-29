@@ -45,7 +45,7 @@ public class TurmaDAO implements ITurmasDAO {
 		boolean inseria = tabelaturmas.add(t);
 		return inseria;
 	}
-	public boolean excluiraluno(Aluno t) {
+	public boolean excluiraluno(Turma t) {
 		boolean excluia = tabelaturmas.remove(t);
 		return excluia;
 	} 

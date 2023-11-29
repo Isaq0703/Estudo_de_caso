@@ -1,21 +1,8 @@
 package modelo;
 
-import java.util.ArrayList;
-
 //import controle.TurmaDAO;
 
-public class Aluno {
-	private static ArrayList<Aluno> tabelaalunos;
-	public static Aluno instancia;
-	
-
-	public static Aluno getInstancia() {
-		if (instancia == null) {
-			instancia = new Aluno();
-			tabelaalunos = new ArrayList<>();
-		}
-		return instancia;
-	}
+public class Aluno extends Turma {
 
 	private String codigoMatricula;
 	private String nome;

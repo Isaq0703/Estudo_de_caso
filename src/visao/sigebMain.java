@@ -224,7 +224,7 @@ public class sigebMain {
 							TurmaDAO dao = new TurmaDAO();
 							dao.inseriraluno(aluno);
 							// DAO (inseriraluno)
-							turma.getAlunos().add(aluno);
+							
 
 						}
 					}
@@ -300,11 +300,12 @@ public class sigebMain {
 							}
 							System.out.println("Digite o código do aluno que deseja excluir:");
 							String codMatricula = leitura.nextLine();
-
+							TurmaDAO dao = new TurmaDAO();
 							// DAO (excluirAluno)
 							for (Aluno aluno : turma.getAlunos()) {
-								if (aluno.getCodigoMatricula().equals(codMatricula)) {
-									turma.getAlunos().remove(aluno);
+								if (aluno.getCodigoMatricula().equals(codMatricula))
+									dao.excluiraluno(aluno);{
+									//turma.getAlunos().remove(aluno);
 								}
 							}
 
