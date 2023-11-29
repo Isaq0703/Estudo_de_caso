@@ -9,7 +9,7 @@ public interface ITurmasDAO {
 
 	public boolean inserir(Turma t);
 
-	public boolean alterar(Turma t);
+	public boolean alterar(Turma t,Integer codigo);
 
 	public boolean excluir(Turma t);
 	

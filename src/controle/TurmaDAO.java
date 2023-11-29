@@ -27,9 +27,13 @@ public class TurmaDAO implements ITurmasDAO {
 	}
 
 	@Override
-	public boolean alterar(Turma t) {
-		boolean alterado = tabelaturmas.add(t);
-		return alterado;
+	public boolean alterar(Turma t, Integer codigo) {
+		for (Turma turminha : tabelaturmas) {
+			if(turminha.getCodTurma()==codigo) {
+				turminha.setNome(t.getNome());
+			}
+		}
+		return false;
 	}
 
 	@Override
