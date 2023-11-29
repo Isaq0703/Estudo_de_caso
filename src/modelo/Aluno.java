@@ -4,14 +4,14 @@ package modelo;
 
 public class Aluno extends Turma {
 
-	private String codigoMatricula;
+	private Integer codigoMatricula;
 	private String nome;
 
-	public String getCodigoMatricula() {
+	public Integer getCodigoMatricula() {
 		return codigoMatricula;
 	}
 
-	public void setCodigoMatricula(String codigoMatricula) {
+	public void setCodigoMatricula(Integer codigoMatricula) {
 		this.codigoMatricula = codigoMatricula;
 	}
 

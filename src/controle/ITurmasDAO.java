@@ -13,9 +13,9 @@ public interface ITurmasDAO {
 
 	public boolean excluir(Turma t);
 	
-	public boolean inseriraluno(Turma t);
+	public boolean inseriraluno(Aluno a);
 	
-	public boolean excluiraluno(Turma t);
+	public boolean excluiraluno(Aluno a);
 
 	public ArrayList<Turma> listarTurmas();
 

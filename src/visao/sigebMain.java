@@ -220,7 +220,7 @@ public class sigebMain {
 							Aluno aluno = new Aluno();
 							aluno.setNome(leitura.nextLine());
 							System.out.println("Digite o código do aluno que será adicionado:");
-							aluno.setCodigoMatricula(leitura.nextLine());
+							aluno.setCodigoMatricula(Integer.valueOf(leitura.nextLine()));
 							TurmaDAO dao = new TurmaDAO();
 							dao.inseriraluno(aluno);
 							// DAO (inseriraluno)

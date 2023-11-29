@@ -7,12 +7,15 @@ import modelo.Turma;
 
 public class TurmaDAO implements ITurmasDAO {
 	private static ArrayList<Turma> tabelaturmas;
+	private static ArrayList<Aluno> tabelaAluno;
+	
 	public static TurmaDAO instancia;
 
 	public static TurmaDAO getInstancia() {
 		if (instancia == null) {
 			instancia = new TurmaDAO();
 			tabelaturmas = new ArrayList<>();
+			tabelaAluno = new ArrayList<>();
 		}
 		return instancia;
 	}
@@ -40,13 +43,17 @@ public class TurmaDAO implements ITurmasDAO {
 	public ArrayList<Turma> listarTurmas() {
 		return tabelaturmas;
 	}
+	public ArrayList<Aluno> ListarAlunos(){
+		return tabelaAluno;
+	}
 	
-	public boolean inseriraluno(Turma t){
-		boolean inseria = tabelaturmas.add(t);
+	public boolean inseriraluno(Aluno a){
+		boolean inseria = tabelaAluno.add(a);
 		return inseria;
 	}
-	public boolean excluiraluno(Turma t) {
-		boolean excluia = tabelaturmas.remove(t);
+	public boolean excluiraluno(Aluno a) {
+		boolean excluia = tabelaAluno.remove(a);
 		return excluia;
-	} 
+	}
+
 }
