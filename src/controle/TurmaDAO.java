@@ -41,10 +41,14 @@ public class TurmaDAO implements ITurmasDAO {
 	}
 
 	@Override
-	public boolean excluir(Turma t) {
-		boolean excluido = tabelaturmas.remove(t);
-
-		return excluido;
+	public boolean excluir(Integer codigo) {
+		for (Turma turminha : tabelaturmas) {
+			if(codigo.equals(turminha.getCodTurma())) {
+				tabelaturmas.remove(turminha);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override

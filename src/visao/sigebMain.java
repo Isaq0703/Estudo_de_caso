@@ -151,16 +151,13 @@ public class sigebMain {
 					i = 0;
 					System.out.println("Excluir turma\n");
 					System.out.println("");
-					System.out.println("Digite o número da turma a ser excluída:");
 					ArrayList<Turma> listaTurmas = daoTurma.listarTurmas();
 					for (Turma listaT : listaTurmas) {
-						i = i + 1;
-						System.out.println(i + "-" + listaT.getNome());
+						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
 					}
-					turmax = Integer.valueOf(leitura.nextLine());
-					Turma remo = new Turma();
-					remo.setCodTurma(turmax - 1);
-					daoTurma.excluir(remo);
+					System.out.println("Digite o código da turma a ser excluída:");
+					Integer cod = Integer.valueOf(leitura.nextLine());
+					daoTurma.excluir(cod);
 					System.out.println("\nturma excluída com sucesso\n");
 					System.out.println("1 Voltar ao menu");
 					System.out.println("2 Encerrar programa");

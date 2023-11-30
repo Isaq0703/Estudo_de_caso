@@ -11,7 +11,7 @@ public interface ITurmasDAO {
 
 	public boolean alterar(Turma t,Integer codigo);
 
-	public boolean excluir(Turma t);
+	public boolean excluir(Integer codigo);
 	
 	public boolean inseriraluno(Aluno a);
 	
