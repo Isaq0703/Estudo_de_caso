@@ -82,7 +82,6 @@ public class sigebMain {
 					// EDITAR
 					System.out.println("Editar Turma;");
 					System.out.println("");
-					System.out.println("Digite o código da turma a ser editada:");
 
 					ArrayList<Turma> listaTurmas = daoTurma.listarTurmas();
 
@@ -90,19 +89,14 @@ public class sigebMain {
 						i = i + 1;
 						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
 					}
-					String turmae = leitura.nextLine();
-					System.out.println("\nDigite o novo nome da turma:");
-					String novoNome = (leitura.nextLine());
+					System.out.println("\nDigite o código da turma a ser editada:");
+					Integer cod = Integer.valueOf(leitura.nextLine());
+					Turma n = new Turma();
+					System.out.println("\n");
+					System.out.println("Digite o novo nome da turma:");
+					n.setNome(leitura.nextLine());
 					TurmaDAO dao1 = new TurmaDAO();
-					Turma nome1 = new Turma();
-					nome1.setNome(novoNome);
-					dao1.alterar(nome1); // obj da turma ja com os novos valores
-
-					for (Turma listaT : listaTurmas) {
-						if (turmae.equals(listaT.getCodTurma())) {
-							listaT.setNome(novoNome);
-						}
-					}
+					dao1.alterar(n,cod); // obj da turma ja com os novos valores
 					System.out.println("\nnome alterado com sucesso");
 					System.out.println(" ");
 					System.out.println("1 Voltar ao Menu");
@@ -134,6 +128,7 @@ public class sigebMain {
 					for (Turma listaT : listaTurmas) {
 						System.out.println(listaT.getNome());
 					}
+					System.out.println("\n");
 					System.out.println("1 Voltar ao menu");
 					System.out.println("2 Encerrar programa");
 					System.out.println("");
@@ -348,5 +343,6 @@ public class sigebMain {
 			}
 			}
 		}
+		System.out.println("Encerrando...");
 	}
 }

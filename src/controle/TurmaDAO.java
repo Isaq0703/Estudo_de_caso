@@ -22,15 +22,19 @@ public class TurmaDAO implements ITurmasDAO {
 
 	@Override
 	public boolean inserir(Turma t) {
-		boolean inseriu = tabelaturmas.add(t);
-		return inseriu;
+		if(t != null) {
+			tabelaturmas.add(t);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public boolean alterar(Turma t, Integer codigo) {
 		for (Turma turminha : tabelaturmas) {
-			if(turminha.getCodTurma()==codigo) {
+			if(turminha.getCodTurma().equals(codigo)) {
 				turminha.setNome(t.getNome());
+				return true;
 			}
 		}
 		return false;
