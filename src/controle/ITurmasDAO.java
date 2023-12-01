@@ -9,11 +9,11 @@ public interface ITurmasDAO {
 
 	public boolean inserir(Turma t);
 
-	public boolean alterar(Turma t,Integer codigo);
+	public boolean alterar(Turma t,String codigo);
 
-	public boolean excluir(Integer codigo);
+	public boolean excluir(String codigo);
 	
-	public boolean inseriraluno(Aluno a,Integer codigo,ArrayList<Aluno> alunos);
+	public boolean inseriraluno(Aluno a,String codigo);
 	
 	public boolean excluiraluno(Aluno a);
 	

@@ -30,7 +30,7 @@ public class TurmaDAO implements ITurmasDAO {
 	}
 
 	@Override
-	public boolean alterar(Turma t, Integer codigo) {
+	public boolean alterar(Turma t, String codigo) {
 		for (Turma turminha : tabelaturmas) {
 			if(turminha.getCodTurma().equals(codigo)) {
 				turminha.setNome(t.getNome());
@@ -41,7 +41,7 @@ public class TurmaDAO implements ITurmasDAO {
 	}
 
 	@Override
-	public boolean excluir(Integer codigo) {
+	public boolean excluir(String codigo) {
 		for (Turma turminha : tabelaturmas) {
 			if(codigo.equals(turminha.getCodTurma())) {
 				tabelaturmas.remove(turminha);
@@ -59,10 +59,10 @@ public class TurmaDAO implements ITurmasDAO {
 		return tabelaAluno;
 	}
 	
-	public boolean inseriraluno(Aluno a,Integer codigo, ArrayList<Aluno> alunos){
+	public boolean inseriraluno(Aluno a,String codigo){
 		for (Turma turminha : tabelaturmas) {
-			if(codigo == turminha.getCodTurma()) {
-				alunos.add(a);
+			if(codigo.equals(turminha.getCodTurma())) {
+				tabelaAluno.add(a);
 				return true;
 			}
 		}
