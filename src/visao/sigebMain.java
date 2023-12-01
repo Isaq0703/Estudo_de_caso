@@ -86,8 +86,7 @@ public class sigebMain {
 					ArrayList<Turma> listaTurmas = daoTurma.listarTurmas();
 
 					for (Turma listaT : listaTurmas) {
-						i = i + 1;
-						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
+						System.out.println(listaT.getCodTurma() + " -" + listaT.getNome());
 					}
 					System.out.println("\nDigite o código da turma a ser editada:");
 					Integer cod = Integer.valueOf(leitura.nextLine());
@@ -204,22 +203,16 @@ public class sigebMain {
 						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
 					}
 					System.out.println("Digite o código da turma em que você deseja adicionar um aluno:");
-					Integer turmaA = Integer.valueOf(leitura.nextLine());
-
-					for (Turma turma : listaTurmas) {
-						if (turma.getCodTurma().equals(turmaA)) {
-							System.out.println("Digite o nome do aluno que será adicionado:");
-							Aluno aluno = new Aluno();
-							aluno.setNome(leitura.nextLine());
-							System.out.println("Digite o código do aluno que será adicionado:");
-							aluno.setCodigoMatricula(Integer.valueOf(leitura.nextLine()));
-							TurmaDAO dao = new TurmaDAO();
-							dao.inseriraluno(aluno);
+					Integer cod = Integer.valueOf(leitura.nextLine());
+					Aluno aluno = new Aluno();
+					System.out.println("Digite o nome do aluno que será adicionado:");
+					aluno.setNome(leitura.nextLine());
+					System.out.println("Digite o código do aluno que será adicionado:");
+					aluno.setCodigoMatricula(Integer.valueOf(leitura.nextLine()));
+					ArrayList<Aluno> kleber = new ArrayList<Aluno>();
+					TurmaDAO dao = new TurmaDAO();
+					dao.inseriraluno(aluno,cod,kleber);
 							// DAO (inseriraluno)
-							
-
-						}
-					}
 					System.out.println("Aluno adicionado com sucesso\n");
 					System.out.println("1 Voltar ao Menu");
 					System.out.println("2 Encerrar Programa");

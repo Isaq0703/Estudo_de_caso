@@ -59,9 +59,22 @@ public class TurmaDAO implements ITurmasDAO {
 		return tabelaAluno;
 	}
 	
-	public boolean inseriraluno(Aluno a){
-		boolean inseria = tabelaAluno.add(a);
-		return inseria;
+	public boolean inseriraluno(Aluno a,Integer codigo, ArrayList<Aluno> alunos){
+		for (Turma turminha : tabelaturmas) {
+			if(codigo == turminha.getCodTurma()) {
+				alunos.add(a);
+				return true;
+			}
+		}
+		return false;
+	}
+	public boolean listaraluno(Aluno a,ArrayList<Aluno> alunos) {
+		for (Turma turminha : tabelaturmas) {
+			for (Aluno aluno : alunos) {
+				System.out.println(aluno.getNome());
+			}
+		}
+		return false;
 	}
 	public boolean excluiraluno(Aluno a) {
 		boolean excluia = tabelaAluno.remove(a);

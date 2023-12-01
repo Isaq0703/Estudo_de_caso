@@ -13,9 +13,11 @@ public interface ITurmasDAO {
 
 	public boolean excluir(Integer codigo);
 	
-	public boolean inseriraluno(Aluno a);
+	public boolean inseriraluno(Aluno a,Integer codigo,ArrayList<Aluno> alunos);
 	
 	public boolean excluiraluno(Aluno a);
+	
+	public boolean listaraluno(Aluno a,ArrayList<Aluno> alunos);
 
 	public ArrayList<Turma> listarTurmas();
 
