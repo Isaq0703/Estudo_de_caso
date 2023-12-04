@@ -13,11 +13,11 @@ public interface ITurmasDAO {
 
 	public boolean excluir(String codigo);
 	
-	public boolean inseriraluno(Aluno a,String codigo);
+	public boolean inseriraluno(ArrayList<Aluno>alunos,String codigo);
 	
 	public boolean excluiraluno(Aluno a);
 	
-	public boolean listaraluno(Aluno a,ArrayList<Aluno> alunos);
+	public ArrayList<Aluno> listarAlunos(String codigo);
 
 	public ArrayList<Turma> listarTurmas();
 

@@ -1,6 +1,7 @@
 package visao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import controle.TurmaDAO;
@@ -51,13 +52,15 @@ public class sigebMain {
 					Turma turma1 = new Turma();
 					turma1.setNome(nome);
 					turma1.setCodTurma(codigo);
+					turma1.setAlunos(null);
 					TurmaDAO dao = new TurmaDAO();
 					dao.inserir(turma1);
 
 					System.out.println("\nTurma '" + turma1.getNome() + "' criada com sucesso\n");
+					System.out.println("\n");
 					System.out.println("1 Voltar ao Menu");
 					System.out.println("2 Encerrar Programa");
-					System.out.println("");
+					System.out.println("\n");
 					opT2 = Integer.valueOf(leitura.nextLine());
 					switch (opT2) {
 					case 1: {
@@ -97,10 +100,10 @@ public class sigebMain {
 					TurmaDAO dao1 = new TurmaDAO();
 					dao1.alterar(n,cod); // obj da turma ja com os novos valores
 					System.out.println("\nnome alterado com sucesso");
-					System.out.println(" ");
+					System.out.println("\n");
 					System.out.println("1 Voltar ao Menu");
 					System.out.println("2 Encerrar Programa");
-					System.out.println("");
+					System.out.println("\n");
 					opT2 = Integer.valueOf(leitura.nextLine());
 					switch (opT2) {
 					case 1: {
@@ -130,7 +133,7 @@ public class sigebMain {
 					System.out.println("\n");
 					System.out.println("1 Voltar ao menu");
 					System.out.println("2 Encerrar programa");
-					System.out.println("");
+					System.out.println("\n");
 					opT2 = Integer.valueOf(leitura.nextLine());
 					switch (opT2) {
 					case 1: {
@@ -158,8 +161,10 @@ public class sigebMain {
 					String cod = leitura.nextLine();
 					daoTurma.excluir(cod);
 					System.out.println("\nturma excluída com sucesso\n");
+					System.out.println("\n");
 					System.out.println("1 Voltar ao menu");
 					System.out.println("2 Encerrar programa");
+					System.out.println("\n");
 					opT2 = Integer.valueOf(leitura.nextLine());
 					switch (opT2) {
 					case 1: {
@@ -199,19 +204,25 @@ public class sigebMain {
 					System.out.println("Adicionar Aluno\n");
 
 					ArrayList<Turma> listaTurmas = daoTurma.listarTurmas();
+					ArrayList<Aluno>alunos = new ArrayList<Aluno>();
 					for (Turma listaT : listaTurmas) {
 						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
 					}
 					System.out.println("Digite o código da turma em que você deseja adicionar um aluno:");
 					String cod = leitura.nextLine();
+					for (Turma listaT : listaTurmas) {
+						if(listaT.getCodTurma().equals(cod)&&(listaT.getAlunos()!=null)) {
+							alunos = listaT.getAlunos();
+						}
+					}
 					Aluno aluno = new Aluno();
 					System.out.println("Digite o nome do aluno que será adicionado:");
 					aluno.setNome(leitura.nextLine());
 					System.out.println("Digite o número de matricula do aluno que será adicionado:");
 					aluno.setCodigoMatricula(Integer.valueOf(leitura.nextLine()));
-					ArrayList<Aluno> kleber = new ArrayList<Aluno>();
 					TurmaDAO dao = new TurmaDAO();
-					dao.inseriraluno(aluno,cod);
+					alunos.add(aluno);
+					dao.inseriraluno(alunos,cod);
 							// DAO (inseriraluno)
 					System.out.println("Aluno adicionado com sucesso\n");
 					System.out.println("1 Voltar ao Menu");
@@ -240,15 +251,24 @@ public class sigebMain {
 					// LISTAR
 					System.out.println("Listar alunos\n");
 					ArrayList<Turma> listaTurmas = daoTurma.listarTurmas();
-					for (Turma turma : listaTurmas) {
-						for (Aluno aluno : turma.getAlunos()) {
-							System.out.println(aluno.getNome());
+					for (Turma listaT : listaTurmas) {
+						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
+					}
+					System.out.println("Digite o código da turma:");
+					String cod = leitura.nextLine();
+					ArrayList<Aluno> listaAlunos = daoTurma.listarAlunos(cod);
+					if(listaAlunos==null) {
+						System.out.println("Não há alunos cadastrados nessa turma");
+					}
+					else {
+						for (Aluno aluno : listaAlunos) {
+							System.out.println("Nome: "+aluno.getNome()+", Matricula: "+aluno.getCodigoMatricula());
 						}
 					}
 					System.out.println("\n");
 					System.out.println("1 Voltar ao Menu");
 					System.out.println("2 Encerrar Programa");
-					System.out.println("");
+					System.out.println("\n");
 					opT2 = Integer.valueOf(leitura.nextLine());
 					switch (opT2) {
 					case 1: {
@@ -297,9 +317,10 @@ public class sigebMain {
 							System.out.println("Aluno removido com sucesso");
 						}
 					}
+					System.out.println("\n");
 					System.out.println("1 Voltar ao Menu");
 					System.out.println("2 Encerrar Programa");
-					System.out.println("");
+					System.out.println("\n");
 					opT2 = Integer.valueOf(leitura.nextLine());
 					switch (opT2) {
 					case 1: {

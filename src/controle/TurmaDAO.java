@@ -55,27 +55,34 @@ public class TurmaDAO implements ITurmasDAO {
 	public ArrayList<Turma> listarTurmas() {
 		return tabelaturmas;
 	}
-	public ArrayList<Aluno> ListarAlunos(){
-		return tabelaAluno;
-	}
 	
-	public boolean inseriraluno(Aluno a,String codigo){
+	public boolean inseriraluno(ArrayList<Aluno>alunos,String codigo){
 		for (Turma turminha : tabelaturmas) {
 			if(codigo.equals(turminha.getCodTurma())) {
-				tabelaAluno.add(a);
+				turminha.setAlunos(alunos);
+						
+				} 			
+		
 				return true;
-			}
+			
 		}
+	
 		return false;
 	}
-	public boolean listaraluno(Aluno a,ArrayList<Aluno> alunos) {
-		for (Turma turminha : tabelaturmas) {
-			for (Aluno aluno : alunos) {
-				System.out.println(aluno.getNome());
-			}
-		}
-		return false;
+	
+	
+	public ArrayList<Aluno> listarAlunos(String codigo){
+	for (Turma turminha : tabelaturmas) {
+		if(codigo.equals(turminha.getCodTurma())) {
+			Turma turma = turminha;
+			return turma.getAlunos();
+			
+		} 	
+		
 	}
+	return null;
+	}
+	
 	public boolean excluiraluno(Aluno a) {
 		boolean excluia = tabelaAluno.remove(a);
 		return excluia;
