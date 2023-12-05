@@ -15,7 +15,7 @@ public interface ITurmasDAO {
 	
 	public boolean inseriraluno(ArrayList<Aluno>alunos,String codigo);
 	
-	public boolean excluiraluno(Aluno a);
+	public boolean excluiraluno(String codigo, Integer matricula,ArrayList<Aluno> alunos);
 	
 	public ArrayList<Aluno> listarAlunos(String codigo);
 

@@ -98,7 +98,7 @@ public class sigebMain {
 					System.out.println("Digite o novo nome da turma:");
 					n.setNome(leitura.nextLine());
 					TurmaDAO dao1 = new TurmaDAO();
-					dao1.alterar(n,cod); // obj da turma ja com os novos valores
+					dao1.alterar(n, cod); // obj da turma ja com os novos valores
 					System.out.println("\nnome alterado com sucesso");
 					System.out.println("\n");
 					System.out.println("1 Voltar ao Menu");
@@ -128,7 +128,7 @@ public class sigebMain {
 					System.out.println("Ver Turmas\n");
 					ArrayList<Turma> listaTurmas = daoTurma.listarTurmas();
 					for (Turma listaT : listaTurmas) {
-						System.out.println("Nome: "+listaT.getNome()+ ", Código: "+listaT.getCodTurma());
+						System.out.println("Nome: " + listaT.getNome() + ", Código: " + listaT.getCodTurma());
 					}
 					System.out.println("\n");
 					System.out.println("1 Voltar ao menu");
@@ -204,14 +204,14 @@ public class sigebMain {
 					System.out.println("Adicionar Aluno\n");
 
 					ArrayList<Turma> listaTurmas = daoTurma.listarTurmas();
-					ArrayList<Aluno>alunos = new ArrayList<Aluno>();
+					ArrayList<Aluno> alunos = new ArrayList<Aluno>();
 					for (Turma listaT : listaTurmas) {
 						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
 					}
 					System.out.println("Digite o código da turma em que você deseja adicionar um aluno:");
 					String cod = leitura.nextLine();
 					for (Turma listaT : listaTurmas) {
-						if(listaT.getCodTurma().equals(cod)&&(listaT.getAlunos()!=null)) {
+						if (listaT.getCodTurma().equals(cod) && (listaT.getAlunos() != null)) {
 							alunos = listaT.getAlunos();
 						}
 					}
@@ -222,8 +222,8 @@ public class sigebMain {
 					aluno.setCodigoMatricula(Integer.valueOf(leitura.nextLine()));
 					TurmaDAO dao = new TurmaDAO();
 					alunos.add(aluno);
-					dao.inseriraluno(alunos,cod);
-							// DAO (inseriraluno)
+					dao.inseriraluno(alunos, cod);
+					// DAO (inseriraluno)
 					System.out.println("Aluno adicionado com sucesso\n");
 					System.out.println("1 Voltar ao Menu");
 					System.out.println("2 Encerrar Programa");
@@ -257,12 +257,12 @@ public class sigebMain {
 					System.out.println("Digite o código da turma:");
 					String cod = leitura.nextLine();
 					ArrayList<Aluno> listaAlunos = daoTurma.listarAlunos(cod);
-					if(listaAlunos==null) {
+					if (listaAlunos == null) {
 						System.out.println("Não há alunos cadastrados nessa turma");
-					}
-					else {
+					} else {
 						for (Aluno aluno : listaAlunos) {
-							System.out.println("Nome: "+aluno.getNome()+", Matricula: "+aluno.getCodigoMatricula());
+							System.out
+									.println("Nome: " + aluno.getNome() + ", Matricula: " + aluno.getCodigoMatricula());
 						}
 					}
 					System.out.println("\n");
@@ -290,67 +290,72 @@ public class sigebMain {
 				}
 				case 3: {
 					// EXCLUIR
+					ArrayList<Aluno> lista = new ArrayList<Aluno>();
 					System.out.println("Excluir alunos\n");
 
 					for (Turma listaT : daoTurma.listarTurmas()) {
 						System.out.println(listaT.getCodTurma() + "-" + listaT.getNome());
 					}
 					System.out.println("Digite o código da turma onde o aluno está cadastrado:");
-					String turmaA = leitura.nextLine();
+					String cod = leitura.nextLine();
 					System.out.println("\n");
 					for (Turma turma : daoTurma.listarTurmas()) {
-						if (turma.getCodTurma().equals(turmaA)) {
+						if (turma.getCodTurma().equals(cod)) {
+							lista = turma.getAlunos();
 							for (Aluno aluno : turma.getAlunos()) {
 								System.out.println(aluno.getCodigoMatricula() + "-" + aluno.getNome());
 							}
 							System.out.println("Digite a matricula do aluno que deseja excluir:");
-							String codMatricula = leitura.nextLine();
+							Integer matricula = Integer.valueOf(leitura.nextLine());
 							TurmaDAO dao = new TurmaDAO();
-							// DAO (excluirAluno)
-							for (Aluno aluno : turma.getAlunos()) {
-								if (aluno.getCodigoMatricula().equals(codMatricula))
-									dao.excluiraluno(aluno);{
-									//turma.getAlunos().remove(aluno);
+							dao.excluiraluno(cod, matricula, lista);
+							for (Turma listaT : daoTurma.listarTurmas()) {
+								if (listaT.getCodTurma().equals(cod)) {
+									listaT.setAlunos(lista);
 								}
-							}
 
-							System.out.println("Aluno removido com sucesso");
+							}
+							// turma.getAlunos().remove(aluno);
 						}
 					}
-					System.out.println("\n");
-					System.out.println("1 Voltar ao Menu");
-					System.out.println("2 Encerrar Programa");
-					System.out.println("\n");
-					opT2 = Integer.valueOf(leitura.nextLine());
-					switch (opT2) {
-					case 1: {
-						op = 0;
-						break;
-					}
-					case 2: {
-						System.out.println("Encerrando...");
-						op = 3;
-						break;
-					}
-					default: {
 
-						System.out.println("Digite novamente;");
-						op = 1;
-						break;
-					}
-					}
+					System.out.println("Aluno removido com sucesso");
 					break;
 				}
-				case 4: {
-					// ENCERRAR
+
+				}
+				System.out.println("\n");
+				System.out.println("1 Voltar ao Menu");
+				System.out.println("2 Encerrar Programa");
+				System.out.println("\n");
+				opT2 = Integer.valueOf(leitura.nextLine());
+				switch (opT2) {
+				case 1: {
+					op = 0;
+					break;
+				}
+				case 2: {
 					System.out.println("Encerrando...");
+					op = 3;
 					break;
 				}
 				default: {
+
 					System.out.println("Digite novamente;");
-					System.out.println("");
+					op = 1;
+					break;
 				}
 				}
+				break;
+			}
+			case 3: {
+				// ENCERRAR
+				System.out.println("Encerrando...");
+				break;
+			}
+			default: {
+				System.out.println("Digite novamente;");
+				System.out.println("");
 			}
 			}
 		}

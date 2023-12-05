@@ -83,9 +83,18 @@ public class TurmaDAO implements ITurmasDAO {
 	return null;
 	}
 	
-	public boolean excluiraluno(Aluno a) {
-		boolean excluia = tabelaAluno.remove(a);
-		return excluia;
+	public boolean excluiraluno(String codigo,Integer matricula,ArrayList<Aluno>alunos) {
+		for (Turma turminha : tabelaturmas) {
+			if(turminha.getCodTurma().equals(codigo)) {
+				for (Aluno aluno : alunos) {
+					if(aluno.getCodigoMatricula()== matricula) {
+						alunos.remove(aluno);
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 }
