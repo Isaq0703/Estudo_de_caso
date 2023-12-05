@@ -19,8 +19,6 @@ public class sigebMain {
 		Integer op = 0;
 		Integer opT = 0;
 		Integer opT2 = 0;
-		Integer i = 0;
-		Integer turmax = 0;
 		while (op != 3) {
 			System.out.println("***SIGEB***\n");
 			System.out.println("1 Turmas");
@@ -42,7 +40,6 @@ public class sigebMain {
 				switch (opT) {
 				case 1: {
 					// CRIAR
-					i = 0;
 					System.out.println("Criar Turma\n");
 					System.out.println("");
 					System.out.println("Digite o nome da turma a ser criada:");
@@ -81,7 +78,6 @@ public class sigebMain {
 					break;
 				}
 				case 2: {
-					i = 0;
 					// EDITAR
 					System.out.println("Editar Turma;");
 					System.out.println("");
@@ -123,7 +119,6 @@ public class sigebMain {
 					break;
 				}
 				case 3: {
-					i = 0;
 					// LISTAR
 					System.out.println("Ver Turmas\n");
 					ArrayList<Turma> listaTurmas = daoTurma.listarTurmas();
@@ -150,7 +145,6 @@ public class sigebMain {
 				}
 				case 4: {
 					// EXCLUIR
-					i = 0;
 					System.out.println("Excluir turma\n");
 					System.out.println("");
 					ArrayList<Turma> listaTurmas = daoTurma.listarTurmas();
@@ -320,29 +314,29 @@ public class sigebMain {
 					}
 
 					System.out.println("Aluno removido com sucesso");
-					break;
-				}
 
-				}
-				System.out.println("\n");
-				System.out.println("1 Voltar ao Menu");
-				System.out.println("2 Encerrar Programa");
-				System.out.println("\n");
-				opT2 = Integer.valueOf(leitura.nextLine());
-				switch (opT2) {
-				case 1: {
-					op = 0;
-					break;
-				}
-				case 2: {
-					System.out.println("Encerrando...");
-					op = 3;
-					break;
-				}
-				default: {
+					System.out.println("\n");
+					System.out.println("1 Voltar ao Menu");
+					System.out.println("2 Encerrar Programa");
+					System.out.println("\n");
+					opT2 = Integer.valueOf(leitura.nextLine());
+					switch (opT2) {
+					case 1: {
+						op = 0;
+						break;
+					}
+					case 2: {
+						System.out.println("Encerrando...");
+						op = 3;
+						break;
+					}
+					default: {
 
-					System.out.println("Digite novamente;");
-					op = 1;
+						System.out.println("Digite novamente;");
+						op = 1;
+						break;
+					}
+					}
 					break;
 				}
 				}
